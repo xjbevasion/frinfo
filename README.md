@@ -2,6 +2,10 @@
 
 Non-rocket-science-tool for auto app dump
 
+Usage:
+
+```ruby shell.rb "AppName```
+
 Each dump include:
 
 - Keychain items
