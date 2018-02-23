@@ -16,7 +16,7 @@ $data = nil
 
 inf = nil
 
-frida_info = `frida -U -l show.js -n #{$app_name} -e "appInfo()" -q`
+frida_info = `frida -U -l show.js -n '#{$app_name}' -e "appInfo()" -q`
 fridaArray = JSON.parse(frida_info)
 puts "Grab info from iOS app: #{$?.success?}"
 $bundle = fridaArray["Bundle ID"]
@@ -30,16 +30,16 @@ data_cmd = `scp -r #{$ios}:#{$data} ./#{$bundle}`
 puts "Copying data folder from iOS: #{$?.success?}"
 
 
-frida_nsuserdafaults = `frida -U -l show.js -n #{$app_name} -e "nsuserdafaults()" -q`
+frida_nsuserdafaults = `frida -U -l show.js -n '#{$app_name}' -e "nsuserdafaults()" -q`
 puts "Grab NSUserDefaults from iOS: #{$?.success?}"
 
-frida_httpcookie = `frida -U -l show.js -n #{$app_name} -e "cookie()" -q`
+frida_httpcookie = `frida -U -l show.js -n '#{$app_name}' -e "cookie()" -q`
 puts "Grab HTTPCookie from iOS: #{$?.success?}"
 
-frida_keychain_entry = `frida -U -l keychain.js -n #{$app_name} -e "keychain_entry" -q`
+frida_keychain_entry = `frida -U -l keychain.js -n '#{$app_name}' -e "keychain_entry" -q`
 puts "Grab Keychain Entry from iOS: #{$?.success?}"
 
-frida_keychain_items = `frida -U -l keychain.js -n #{$app_name} -e "keychain_items" -q`
+frida_keychain_items = `frida -U -l keychain.js -n '#{$app_name}' -e "keychain_items" -q`
 puts "Grab Keychain Items from iOS: #{$?.success?}"
 
 f = File.open("Data_#{$bundle}",'w');
